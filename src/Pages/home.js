@@ -1,5 +1,8 @@
-import { Button, Container, Grid, List, ListItem, ListItemText, makeStyles, Paper, Typography } from '@material-ui/core';
 import React from 'react';
+import { Button, Grid, List, makeStyles, Paper, Typography } from '@material-ui/core';
+import Item from '../components/Item';
+import Card from '../components/Card';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,55 +19,34 @@ const Home = () => {
     const classes = useStyles();
 
     return(
-        <Container maxWidth="xl">
-            <Grid container spacing={3} className={classes.root}>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        <Typography variant='h5'>
-                            Categorias
-                        </Typography>
-                        <List>
-                            <ListItem>
-                                <ListItemText 
-                                    primary="Times nacionais"
-                                    secondary="3"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary="Times internacionais"
-                                    secondary="3"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary="Times históricos"
-                                    secondary="3"
-                                />
-                            </ListItem>
-                        </List>
-                    </Paper>
-                </Grid>
-                <Grid container xs={9} spacing={3} className={classes.root}>
-                    <Grid item sx={3}>
-                        <Paper className={classes.root}>
-                            <Grid container direction='column'>
-                                <Grid item>
-                                    <img width="140px" src='####' alt='Flamengo 2023'></img>
-                                    <Typography variant='h6'>
-                                        Produto 
-                                    </Typography>
-                                    <Typography variant='subtitle1'>
-                                        R$ 349.99
-                                    </Typography>
-                                </Grid>
-                                <Button variant='contained'>Adicionar</Button>
-                            </Grid>
-                        </Paper>
-                    </Grid>
-                </Grid>
+        <Grid container spacing={3} className={classes.root}>
+            <Grid item xs={3}>
+                <Paper className={classes.paper}>
+                    <Typography variant='h5'>
+                        Categorias
+                    </Typography>
+                    <List>
+                        <Item
+                            name="Times Nacionais"
+                            details="592"
+                        />
+                        <Item
+                            name="Times Internacionais"
+                            details="9249"
+                        />
+                        <Item
+                            name="Seleções"
+                            details="2894"
+                        />
+                    </List>
+                </Paper>
             </Grid>
-        </Container>
+            <Grid container xs={9} spacing={3} className={classes.root}>
+                <Card name="Flamengo 2023" price="349.99" image="./images/Camisa-fla-2023.webp">
+                    Flamengo
+                </Card>
+            </Grid>
+    </Grid>
     )
 }
 

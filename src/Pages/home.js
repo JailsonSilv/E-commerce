@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Grid, List, makeStyles, Paper, Typography } from '@material-ui/core';
 import Item from '../components/Item';
 import Card from '../components/Card';
@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Home = ({ products }) => {
+const Home = () => {
+    const products = useSelector(state => state.products)
     const classes = useStyles();
 
     const  categorys = products.map(
@@ -33,7 +34,19 @@ const Home = ({ products }) => {
                         return arr.indexOf(item, index + 1) === -1;
                     })
                     .map(JSON.parse)
-    console.log(category);
+    
+
+    const arrayCategory = categorys.map(category => category.name)
+    let count = [];
+
+    for (let i = 0; i < arrayCategory.length; i++){
+        {
+            let key = arrayCategory[i]
+            count[key] = (count[key] ? count[key] +1 : 1)
+        }
+    }
+
+    console.log(count);
 
     return(
         <Grid container spacing={3} className={classes.root}>
@@ -43,13 +56,13 @@ const Home = ({ products }) => {
                         Categorias
                     </Typography>
                     <List>
-                        {categorys.map(
+                        {category.map(
                             category => {
                                 return (
                                     <Item 
                                         key={category.id}
                                         name={category.name}
-                                        // details="592"
+                                        details={count[category.name]}
                                     />
                                 )
                             }
@@ -67,11 +80,7 @@ const Home = ({ products }) => {
                 })}
             </Grid>
     </Grid>
-    )
-}
+    );
+};
 
-const mapStateToProps = state => ({
-    products: state.products
-}) 
-
-export default connect(mapStateToProps)(Home);
+export default (Home);

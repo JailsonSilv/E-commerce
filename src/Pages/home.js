@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Grid, List, makeStyles, Paper, Typography } from '@material-ui/core';
 import Item from '../components/Item';
 import Card from '../components/Card';
@@ -11,12 +12,23 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         padding: theme.spacing(2),
-        textAlign: 'center'
+        textAlign: 'center',
     },
 }));
 
-const Home = () => {
+const Home = ({ products }) => {
     const classes = useStyles();
+
+    const  categorys = products.map(
+        category => {
+            const container = { }
+            container['id'] = category.id_categorys;
+            container['name'] = category.name_categorys;
+            return container;
+        }
+    );
+
+    console.log(categorys);
 
     return(
         <Grid container spacing={3} className={classes.root}>
@@ -26,28 +38,35 @@ const Home = () => {
                         Categorias
                     </Typography>
                     <List>
-                        <Item
-                            name="Times Nacionais"
-                            details="592"
-                        />
-                        <Item
-                            name="Times Internacionais"
-                            details="9249"
-                        />
-                        <Item
-                            name="Seleções"
-                            details="2894"
-                        />
+                        {categorys.map(
+                            category => {
+                                return (
+                                    <Item 
+                                        key={category.id}
+                                        name={category.name}
+                                        // details="592"
+                                    />
+                                )
+                            }
+                        )}
                     </List>
                 </Paper>
             </Grid>
             <Grid container xs={9} spacing={3} className={classes.root}>
-                <Card name="Flamengo 2023" price="349.99" image="./images/Camisa-fla-2023.webp">
-                    Flamengo
-                </Card>
+                {products.map(item => {
+                    return(
+                        <Card key={item.id_product} name={item.name_product} price={item.price} image={item.image}>
+                            {item.name_product}
+                        </Card>
+                    )
+                })}
             </Grid>
     </Grid>
     )
 }
 
-export default Home;
+const mapStateToProps = state => ({
+    products: state.products
+}) 
+
+export default connect(mapStateToProps)(Home);

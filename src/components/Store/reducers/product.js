@@ -98,15 +98,6 @@ const productList = [
         name_categorys: "Clubes Brasileiros",
         selected: false,
     },
-    {
-        id_product: 1,
-        category: "nacional",
-        fk_idcategorys: 1,
-        name_product: "Flamengo 2023/2024",
-        price: 349.99,
-        image: "images/Camisa-fla-2023.webp",
-        id_categorys: 1,
-        name_categorys: "Clubes Brasileiros",
-        selected: false,
-    },
 ];
+
+export default productList;

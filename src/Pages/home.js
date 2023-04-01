@@ -26,9 +26,14 @@ const Home = ({ products }) => {
             container['name'] = category.name_categorys;
             return container;
         }
-    );
+    )
 
-    console.log(categorys);
+    const category = categorys.map(JSON.stringify)
+                    .filter(function(item, index, arr) {
+                        return arr.indexOf(item, index + 1) === -1;
+                    })
+                    .map(JSON.parse)
+    console.log(category);
 
     return(
         <Grid container spacing={3} className={classes.root}>

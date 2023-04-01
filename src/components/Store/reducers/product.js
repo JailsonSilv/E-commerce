@@ -7,7 +7,7 @@ const productList = [
         price: 349.99,
         image: "images/Camisa-fla-2023.webp",
         id_categorys: 1,
-        name_categorys: "Clubes Brasileiros",
+        name_categorys: "Clubes europeus",
         selected: false,
     },
     {
@@ -18,7 +18,7 @@ const productList = [
         price: 349.99,
         image: "images/Camisa-fla-2023.webp",
         id_categorys: 1,
-        name_categorys: "Clubes Brasileiros",
+        name_categorys: "Seleções",
         selected: false,
     },
     {
@@ -29,7 +29,7 @@ const productList = [
         price: 349.99,
         image: "images/Camisa-fla-2023.webp",
         id_categorys: 1,
-        name_categorys: "Clubes Brasileiros",
+        name_categorys: "Clubes nacionais",
         selected: false,
     },
     {
